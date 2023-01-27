@@ -60,7 +60,7 @@ export function getActivity(){
  export function getDetail(id){
     return async function(dispatch){
         try {                           //http://localhost:3001/countries/
-            var json = await axios.get('http://localhost:3001/countries' + id)
+            var json = await axios.get('http://localhost:3001/countries/' + id)
             console.log(json.data)
             return dispatch({
                 type: 'GET_DETAILS',

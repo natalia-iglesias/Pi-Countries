@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCountrys, filterByContinents, orderByName } from '../actions';
+import { Link } from 'react-router-dom';
 
 import Card from './Card';
 import Paginado from './Paginado';
@@ -48,6 +49,9 @@ function handleFilterContinents(e){
       
     <div>
       <select onChange={e => handleSort(e)}>
+      <option value='' selected disabled>
+          Order by abc
+        </option>
         <option value='asc'>Ascendente a-z</option>
         <option value='desc'>Descendente z-a</option>
       </select>
@@ -72,6 +76,7 @@ function handleFilterContinents(e){
       <option value = 'act'>Todas las Actividades</option>
       </select>
       <SearchBar/>
+     <Link to = '/activity'><button>Crear Actividad</button></Link> 
       <Paginado
       countriesPerPage = {countriesPerPage}
       allCountries = {allCountries.length}

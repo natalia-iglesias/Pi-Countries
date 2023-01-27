@@ -14,22 +14,23 @@ export default function Details(props) {
 
     useEffect(() => {
         dispatch(getDetail(id));
-    },[dispatch])
+    },[dispatch,id])
 
     const myCountry = useSelector((state) => state.detail)
+    console.log(myCountry[0])
 
    return (
     <div>
         {
             myCountry.length > 0 ? 
              <div>  
-               <h1>Country: {myCountry.name}</h1>
-                <h2>Continet: {myCountry.continet}</h2>
-                <h2>Subregion: {myCountry.subregion}</h2>
-                <h2>Area: {myCountry.area}</h2>
-                <h2>Population: {myCountry.population}</h2>
-                <h2>Activities: {myCountry.activity}</h2>
-                <img scr={myCountry.flag} alt = "img flag"/>
+               <h1>Country: {myCountry[0].name}</h1>
+                <h2>Continent: {myCountry[0].continent}</h2>
+                <h2>Subregion: {myCountry[0].subregion}</h2>
+                <h2>Area: {myCountry[0].area}</h2>
+                <h2>Population: {myCountry[0].population}</h2>
+                <h2>Activities: {myCountry[0].activity}</h2>
+                <img src={myCountry[0].flag} alt = "img flag"/>
 
             </div> : <p>Loading...</p>    
         }
