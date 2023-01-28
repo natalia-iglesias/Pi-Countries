@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getNameCountrys } from '../actions';
+import { getNameCountrys } from '../../actions';
 
 
 export default function SearchBar() {

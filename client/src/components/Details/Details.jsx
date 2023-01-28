@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {getDetail} from '../actions';
+import {getDetail} from '../../actions';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -29,7 +29,14 @@ export default function Details(props) {
                 <h2>Subregion: {myCountry[0].subregion}</h2>
                 <h2>Area: {myCountry[0].area}</h2>
                 <h2>Population: {myCountry[0].population}</h2>
-                <h2>Activities: {myCountry[0].activity}</h2>
+                <h2>Activities: {myCountry[0].Activities.map(el => {
+                    return (
+                        <h5>{el.name}</h5>
+                    )
+                   
+                }
+                 )
+                    }</h2>
                 <img src={myCountry[0].flag} alt = "img flag"/>
 
             </div> : <p>Loading...</p>    

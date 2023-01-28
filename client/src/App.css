@@ -12,6 +12,14 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.bkg {
+  background-image: url('../src/assets/brett-zeck-eyfMgGvo9PA-unsplash.jpg');
+  background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
 
 .App-header {
   background-color: #282c34;

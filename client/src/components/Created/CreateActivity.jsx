@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import { getCountrys, postActivity } from '../actions';
+import { getCountrys, postActivity } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -18,6 +18,15 @@ export default function CreateActivity() {
         season:1,
         countries: []
     })
+    useEffect(() => {
+        dispatch(getCountrys());
+    }, []);
+
+    /*  "name" : "Nadar",
+    "difficulty": 2,
+    "duration": 10,
+    "season": "summer",
+    "countries": ["Argentina", "Chile"] */
 
     function handelChange(e){
         setInput({
@@ -39,6 +48,7 @@ export default function CreateActivity() {
     }
 
     function handleSubmit(e){
+        console.log('holaaa')
         e.preventDelfault();
         console.log(input)
         dispatch(postActivity(input))
@@ -53,31 +63,28 @@ export default function CreateActivity() {
         history.push('/home')
     }
 
-    useEffect(() => {
-        dispatch(getCountrys());
-    }, []);
 
   return (
     <div>
         <Link to = '/home'><button>volver</button></Link>
         <h1>Crea tu Actividad</h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label>Nombre</label>
                 <input
                 type = "text"
-                value = {input.name}
                 name = "name"
-                onChange={(e) => handelChange(e)}
+                value = {input.name}
+                onChange={e => handelChange(e)}
                 />
             </div>
             <div>
                 <label>Difficulty</label>
                 <input
                  type = "range" min='1' max='5'
-                 value = {input.difficulty}
                  name = "difficulty"
-                 onChange={(e) => handelChange(e)}
+                 value = {input.difficulty}
+                 onChange={e => handelChange(e)}
 
                 />
             </div>
@@ -85,14 +92,14 @@ export default function CreateActivity() {
                 <label>Duration</label>
                 <input 
                 type="number" 
-                value= {input.duration}
                 name = "duration"
-                onChange={(e) => handelChange(e)}
+                value= {input.duration}
+                onChange={e => handelChange(e)}
                 />
             </div>
             <div>
                 <label>Season</label>
-                <select onChange={(e) => handelSeason(e)}>
+                <select onChange={e => handelSeason(e)}>
                 <option disabled value="None">Select Season</option>
                 <option value="Summer">Summer</option>
                 <option value="Autumn">Autumn</option>
@@ -117,3 +124,4 @@ export default function CreateActivity() {
     </div>
   )
 }
+

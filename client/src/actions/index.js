@@ -37,23 +37,38 @@ export function orderByName(payload) {
         payload
     }
 }
+export function populationOrder(payload){
+    return{
+            type:'POPULATION_ORDER',
+            payload
+        }
+}
+export function activitiesCreated(payload){
+    return{
+        type:'ACTIVITIES_CREATED',
+        payload
+
+    }
+
+}
 
 export function getActivity(){
     return async function(dispatch){
-        var info = await axios('http://localhost:3001/activity', {
+        var activities = await axios.get('http://localhost:3001/activity', {
 
         });
-        const activities = activities.data.map(el => el.name.toLowerCase())
+        const activitiesName = activities.data.map(el => el.name.toLowerCase())
         return dispatch({
             type: 'GET_ACTIVITY',
-            payload: info.data
+            payload: activitiesName
         })
     }
 }
  export function postActivity(payload){
     return async function(){
+        console.log('response')
         const response = await axios.post('http://localhost:3001/activity', payload);
-        console.log(response)
+        
         return response;
     }
  }

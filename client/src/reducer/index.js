@@ -59,6 +59,31 @@ function rootReducer (state = initialState, action){
                 ...state,
                 countries: sortdArr
             }
+            case 'POPULATION_ORDER':            
+            const PopulationArray =  action.payload === 'max' ? 
+                state.countries.sort(function(a, b){
+                   if(a.population > b.population) {
+                    return 1
+                }       
+                  if(b.population > a.population){
+                    return -1
+                  }     
+                  return 0     
+                }):
+                state.countries.sort(function(a, b){
+                    if(a.population > b.population) {
+                        return -1
+                    }       
+                      if(b.population > a.population){
+                        return 1
+                      }     
+                      return 0     
+                })  
+            return{
+                ...state,
+                countries: PopulationArray
+            }
+
             case 'GET_ACTIVITY':
                 return {
                     ...state,
@@ -67,6 +92,14 @@ function rootReducer (state = initialState, action){
             case 'POST_ACTIVITY':
                 return {
                     ...state,
+                }
+            case  'ACTIVITIES_CREATED':
+                const activitiesCred = state.activity
+                const createdActivity = action.payload === 'created' ? state.activitiesCred.filter(el => el.createdInDb) : activitiesCred.filter(el => !el.createdInDb)
+              return {
+                ...state,
+                activity: createdActivity
+
                 }
               
 

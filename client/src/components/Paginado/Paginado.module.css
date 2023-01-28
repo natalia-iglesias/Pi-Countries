@@ -1,0 +1,27 @@
+.contenedor {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.li{
+    display: inline;
+    justify-content:space-between;
+    text-align: center;
+    padding: 5px 5px;
+    
+   
+}
+
+.btn {
+    color: black;
+    border-radius: 15px;
+    font-size: 15px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: gray;
+    background-color: rgba(3, 59, 41, 0.5);
+    transition: 2ms;
+   }

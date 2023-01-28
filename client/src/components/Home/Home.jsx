@@ -1,12 +1,13 @@
 import React from 'react';
+import style from './Home.module.css'
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCountrys, filterByContinents, orderByName } from '../actions';
+import {getCountrys, filterByContinents, orderByName, populationOrder,activitiesCreated } from '../../actions';
 import { Link } from 'react-router-dom';
 
-import Card from './Card';
-import Paginado from './Paginado';
-import SearchBar from './SearchBar';
+import Card from '../Cards/Card';
+import Paginado from '../Paginado/Paginado';
+import SearchBar from '../Search/SearchBar';
 
 export default function Home() {
   
@@ -14,7 +15,7 @@ export default function Home() {
   const allCountries = useSelector((state) => state.countries)
   const [orden, setOrden] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [countriesPerPage, setCountriesPerPage] = useState(9)
+  const [countriesPerPage, setCountriesPerPage] = useState(10)
   const indexOfLastCountry = currentPage * countriesPerPage
   const indexFirstCountry = indexOfLastCountry - countriesPerPage
   const currentCountries = allCountries.slice(indexFirstCountry, indexOfLastCountry)
@@ -28,10 +29,10 @@ useEffect(() => {
   dispatch(getCountrys())
 }, [dispatch])
 
-function handleClink(e){
+/* function handleClink(e){
   e.preventDefault();
   dispatch(getCountrys());
-}
+} */
 function handleSort(e){
   e.preventDefault();
   dispatch(orderByName(e.target.value))
@@ -43,22 +44,35 @@ function handleFilterContinents(e){
   dispatch(filterByContinents(e.target.value ))
 
 }
+function handleCreatedAct(e){
+  dispatch(activitiesCreated(e.target.value))
+
+}
+function handlePopulation(e){
+  e.preventDefault();
+  dispatch(populationOrder(e.target.value));
+  setCurrentPage(1);
+  setOrden(`Ordenado ${e.target.value}`)
+}
 
 
   return (
       
-    <div>
+    <div className={style.bkgHome}>
       <select onChange={e => handleSort(e)}>
-      <option value='' selected disabled>
+      <option>
           Order by abc
         </option>
         <option value='asc'>Ascendente a-z</option>
         <option value='desc'>Descendente z-a</option>
       </select>
-      <select>
-        <option value='asc '>poblacion +</option>
-        <option value='desc'>poblacion -</option>
+
+      <select onChange={e => handlePopulation(e)}>
+            <option>By Population</option>
+            <option value = 'max'>Poblacion Ascendente</option>
+            <option value = 'min'>Poblacion Descendente</option>
       </select>
+
       <select onChange={e => handleFilterContinents(e)}>
            <option value='All'>Filter by Continent</option>
 						<option value='Africa'>Africa</option>
@@ -70,13 +84,13 @@ function handleFilterContinents(e){
 						<option value='South America'>South America</option>
          </select>
      
-      <select>
-      <option value = 'act'>Actividad turistica</option>
-      <option value = 'act'>Actividad creada por mi</option>
-      <option value = 'act'>Todas las Actividades</option>
+      <select onChange={e => handleCreatedAct(e)}>
+      <option value = 'all'>All</option>
+      <option value = 'created'>Created</option>
+      
       </select>
       <SearchBar/>
-     <Link to = '/activity'><button>Crear Actividad</button></Link> 
+     <Link to = '/createdActivity'><button>Crear Actividad</button></Link> 
       <Paginado
       countriesPerPage = {countriesPerPage}
       allCountries = {allCountries.length}
@@ -87,7 +101,7 @@ function handleFilterContinents(e){
         currentCountries?.map((el) => {
           return(
             
-              <Card
+              <Card className={style.card}
                  id= {el.id}
                  name = {el.name}
                  continent = {el.continent}

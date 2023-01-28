@@ -1,0 +1,14 @@
+.card {
+   display: inline-flex;
+   justify-self: start;
+   justify-content:space-between;
+   text-align: center;
+   margin-top: 20 px;
+   width: 200 px;
+   height: 254px;
+   padding: 16px;
+}
+.img {
+   width: 200px;
+   height: 120px;
+}
