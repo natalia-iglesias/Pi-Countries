@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getDetail} from '../../actions';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import style from '../Details/Details.module.css'
 
 export default function Details(props) {
     console.log(props)
@@ -17,33 +18,41 @@ export default function Details(props) {
     },[dispatch,id])
 
     const myCountry = useSelector((state) => state.detail)
-    console.log(myCountry[0])
+    console.log(myCountry)
 
    return (
-    <div>
+    <div className={style.bkg}>
+        <Link to= '/home'>
+            <button className= {style.btn}>volver</button>
+        </Link>
         {
-            myCountry.length > 0 ? 
-             <div>  
-               <h1>Country: {myCountry[0].name}</h1>
-                <h2>Continent: {myCountry[0].continent}</h2>
-                <h2>Subregion: {myCountry[0].subregion}</h2>
-                <h2>Area: {myCountry[0].area}</h2>
-                <h2>Population: {myCountry[0].population}</h2>
-                <h2>Activities: {myCountry[0].Activities.map(el => {
+            myCountry ? 
+             <div className={style.div}>  
+               <h1 className={style.name}>Country: {myCountry.name}</h1>
+                <h2>Continent: {myCountry.continent}</h2>
+                <h2>Capital: {myCountry.capital}</h2>
+                <h2>Subregion: {myCountry.subregion}</h2>
+                <h2>Area: {myCountry.area}</h2>
+                <h2>Population: {myCountry.population}</h2>
+                <h2>Activities: {myCountry.Activities?.map(el => {
                     return (
-                        <h5>{el.name}</h5>
+                        <>
+                        <p>Name: {el.name}</p>
+                        <p>Difficulty: {el.difficulty}</p>
+                        <p>Duration: {el.duration} hs</p>
+                        <p>Season: {el.season}</p>
+                        </>
                     )
                    
                 }
                  )
                     }</h2>
-                <img src={myCountry[0].flag} alt = "img flag"/>
 
             </div> : <p>Loading...</p>    
         }
-        <Link to= '/home'>
-            <button>volver</button>
-        </Link>
+        <div className={style.img}>
+        <img  src={myCountry.flag} alt = "img flag"/>
+        </div>
     </div>
    )
 }

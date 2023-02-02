@@ -25,17 +25,16 @@ router.get('/countries', async (req, res) => {
     res.status(200).json(allCountries);
   } catch (error) {}
 });
-router.get('/countries', (req, res) => {
-  res.send('holaaa');
-});
+
 
 router.get('/countries/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const countryFound = await Country.findAll({
-      where: { id: id },
+    const countryFound = await Country.findByPk(id,{
+     
       include: [Activity],
     });
+    console.log(countryFound)
     res.status(200).json(countryFound);
   } catch (error) {
     console.log(error);

@@ -3,7 +3,11 @@ const initialState = {
     countries: [],
     countriesList: [],
     activity: [],
-    detail: {}
+    detail: {},
+    paginacion: {
+        actualPage: 1,
+        countriesPerPage: 9,
+    }
     
 }
 
@@ -83,27 +87,19 @@ function rootReducer (state = initialState, action){
                 ...state,
                 countries: PopulationArray
             }
+            
 
-            case 'GET_ACTIVITY':
+            case 'BY_ACTIVITY':
+                const filterActivities = state.countriesList.filter(e => e.Activities.length > 0)
+                console.log(filterActivities)
                 return {
                     ...state,
-                    activity: action.payload
+                    countries: filterActivities
                 }
-            case 'POST_ACTIVITY':
-                return {
-                    ...state,
-                }
-            case  'ACTIVITIES_CREATED':
-                const activitiesCred = state.activity
-                const createdActivity = action.payload === 'created' ? state.activitiesCred.filter(el => el.createdInDb) : activitiesCred.filter(el => !el.createdInDb)
-              return {
-                ...state,
-                activity: createdActivity
-
-                }
-              
-
-  
+           
+                
+                
+             
 
          default:
             return state;   

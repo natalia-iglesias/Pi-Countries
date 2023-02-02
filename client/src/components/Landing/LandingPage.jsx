@@ -1,5 +1,5 @@
 import React from 'react';
-//import style from 'LandingPage.module.css'
+import style from '../Landing/LandingPage.module.css'
 import {Link} from 'react-router-dom';
 
 
@@ -7,11 +7,11 @@ import {Link} from 'react-router-dom';
 
 export default function LandingPage() {
   return (
-    <div>
-        <h1>Country Page</h1>
+    <div className={style.bkg}>
         <Link to = '/home'>
-            <button>Start</button>
+            <button className={style.btn}>Start</button>
         </Link>
+        <h1 className= {style.h1}>Country Page</h1>
     </div>
   )
 }

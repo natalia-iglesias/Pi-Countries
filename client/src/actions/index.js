@@ -16,6 +16,7 @@ export function filterByContinents(payload){
     }
 
 }
+
 export function getNameCountrys(name){
     return async function(dispatch){
         try {
@@ -43,35 +44,36 @@ export function populationOrder(payload){
             payload
         }
 }
-export function activitiesCreated(payload){
-    return{
-        type:'ACTIVITIES_CREATED',
-        payload
-
-    }
-
-}
+ 
 
 export function getActivity(){
     return async function(dispatch){
-        var activities = await axios.get('http://localhost:3001/activity', {
-
-        });
-        const activitiesName = activities.data.map(el => el.name.toLowerCase())
+        var info = await axios.get('http://localhost:3001/activity', {});
+        //const activitiesName = activities.data.map(el => el.name.toLowerCase())
         return dispatch({
             type: 'GET_ACTIVITY',
-            payload: activitiesName
+            payload: info.data
         })
     }
 }
- export function postActivity(payload){
-    return async function(){
-        console.log('response')
-        const response = await axios.post('http://localhost:3001/activity', payload);
-        
-        return response;
-    }
- }
+export function byActivity(){
+     return {
+        type: 'BY_ACTIVITY',
+     }
+}
+export function postActivity(payload) {
+    console.log(payload);
+    const activity = {
+      name: payload.name,
+      difficulty: payload.difficulty,
+      duration: payload.duration,
+      season: payload.season,
+      countries: payload.countries,
+    };
+    return async function () {
+      await axios.post('http://localhost:3001/activity', activity);
+    };
+  } 
  export function getDetail(id){
     return async function(dispatch){
         try {                           //http://localhost:3001/countries/

@@ -1,0 +1,75 @@
+.bkg{
+    background-image: url('../../assets/brett-zeck-eyfMgGvo9PA-unsplash.jpg');
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+.btn {
+    
+    padding: 5px 5px;
+    color:rgba(12, 12, 95, 0.438);
+    font-family: 'Tourney', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: transparent;
+    border-radius: 25px;
+    outline: none;
+    position: relative;
+    transition: all 0.3s;
+}
+.btn:hover {
+    color: rgba(30, 11, 83, 0.753);
+    
+   
+}
+.name {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px rgb(100, 100, 240);
+    font-family: 'Tourney', cursive;
+    font-size: 25px;
+}
+.inputs {
+    border-color:black;
+    
+    font-family: Arial, Helvetica, sans-serif, red;
+    background-color: whitesmoke;
+    font-size: 20px;
+    
+   
+}
+.inputs:hover {
+    color: var(--btn-color);
+    background-color: transparent;
+    
+}
+.option {
+    font-family: 'Tourney', cursive;
+    font-size: 20px;
+}
+.created {
+    padding: 5px 5px;
+    color:rgba(12, 12, 95, 0.438);
+    font-family: 'Tourney', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: transparent;
+    border-radius: 20px;
+    outline: none;
+    position: relative;
+    transition: all 0.3s;
+}
+.created:hover {
+    color: rgba(30, 11, 83, 0.753);
+}
+.h1 {
+    font-family: 'Tourney', cursive;
+    font-size: 25px;
+}
+

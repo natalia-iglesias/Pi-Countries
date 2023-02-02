@@ -24,7 +24,10 @@ const countryApi = async () => {
 }
 
 const activityDb = async () => {
-    const act = await Activity.findAll() 
+    const act = await Activity.findAll({
+        include: Country,
+       
+    }) 
     return act;
 };
 
@@ -38,6 +41,7 @@ const countryDb = async () => {
                     name: el.name,
                     flag: el.img,
                     continent: el.continent,
+                    capital: el.capital,
                     subregion: el.subregion,
                     area: el.area,
                     population: el.population,

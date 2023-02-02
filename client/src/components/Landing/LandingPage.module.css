@@ -1,5 +1,6 @@
 .bkg{
-    background-image: url('../assets/brett-zeck-eyfMgGvo9PA-unsplash.jpg');
+    background-image: url('../../assets/continenten.jpg');
+    
     background-position:center;
       background-size:cover;
       background-repeat:no-repeat;
@@ -15,8 +16,16 @@
       background-color: rgba(153, 147, 147, 0.507);
       transform: background-color 0.25s;
       cursor: pointer;
-      color: black;
+      color: white
   }
   .btn:hover {
-      background-color: rgba(14, 13, 13, 0.49);
+      background-color: rgba(236, 108, 108, 0.055);
+  }
+  .h1 {
+    display:block;
+    justify-content: end;
+    font-family: 'Tourney', cursive;;
+    font-size: 75px;
+    color: rgba(255, 255, 255, 0.801);
+    
   }
