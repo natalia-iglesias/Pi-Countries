@@ -85,28 +85,30 @@ export default function CreateActivity() {
       season: e.target.value
     }))
   }
-
-
-
+  
+  
+  
+  
   function handleSubmit(e) {
     e.preventDefault();
     setErrors(validate(input));
     if (input.name && input.difficulty && input.duration && input.season && input.countries.length  && !Object.keys(errors).length) {
-    console.log(input);
-    dispatch(postActivity(input));
-    alert('Actividad Creada');
-    setInput({
-      name: '',
-      difficulty: 0,
-      duration: '',
-      season: 1,
-      countries: [],
-    });
-  }else {
-    alert('All fields are required!!')
-} 
-    // history.push('/home');
-  } 
+      console.log(input);
+      dispatch(postActivity(input));
+      alert('Actividad Creada');
+      setInput({
+        name: '',
+        difficulty: 0,
+        duration: '',
+        season: 1,
+        countries: [],
+      });
+    }else {
+      alert('All fields are required!!')
+    } 
+  }
+    
+   
 
   useEffect(() => {
     dispatch(getCountrys());
@@ -160,7 +162,7 @@ export default function CreateActivity() {
         </div>
         <div>
           <label className= {style.name} >Season</label>
-          <select onChange={(e) => handelSeason(e)}>
+          <select onChange={(e) => handelSeason(e)} className={style.select}>
             <option className= {style.name} >Select Season</option>
             <option value='Summer'>Summer</option>
             <option value='Autumn'>Autumn</option>
@@ -173,7 +175,7 @@ export default function CreateActivity() {
           </ul>
         </div>
           <p className= {style.name} >Country</p>
-        <select onChange={(e) => handelSelect(e)}>
+        <select onChange={(e) => handelSelect(e)}className={style.select}>
         
           <option className= {style.option} >Select a Country</option>
           {countries?.map((country) => {
@@ -189,6 +191,7 @@ export default function CreateActivity() {
         <ul>
           <li>{input.countries.map((el) => el + ' ,')}</li>
         </ul>
+        
 
         <button className={style.btn} type='submit'>Create Activity</button>
       </form>

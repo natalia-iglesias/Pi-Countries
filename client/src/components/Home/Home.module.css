@@ -3,3 +3,13 @@
     width: 100vw;
     height: 100vh;
 }
+.filtros{
+    background-color: transparent;
+    color: black;
+    font-family: cursive;
+    font-size: 19px;
+
+}
+.filtros:hover{
+    background-color:rgba(140, 168, 92, 0.493);
+}

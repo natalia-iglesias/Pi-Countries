@@ -31,10 +31,10 @@ useEffect(() => {
   dispatch(getCountrys())
 }, [dispatch])
 
-/* function handleClink(e){
+ function handleClink(e){
   e.preventDefault();
   dispatch(getCountrys());
-} */
+} 
 function handleSort(e){
   e.preventDefault();
   dispatch(orderByName(e.target.value))
@@ -64,7 +64,8 @@ function handleFilterAct(e){
   return (
       
     <div className={style.bkgHome}>
-      <select onChange={e => handleSort(e)}>
+      <button onClick={(e) => handleClink(e)} className={style.filtros}>Reload Countries</button>
+      <select onChange={e => handleSort(e)} className={style.filtros}>
       <option>
           Order by abc
         </option>
@@ -72,13 +73,13 @@ function handleFilterAct(e){
         <option value='desc'> descending z-a</option>
       </select>
 
-      <select onChange={e => handlePopulation(e)}>
+      <select onChange={e => handlePopulation(e)} className={style.filtros}>
             <option>By Population</option>
             <option value = 'max'>Pascending population</option>
             <option value = 'min'>descending  population</option>
       </select>
 
-      <select onChange={e => handleFilterContinents(e)}>
+      <select onChange={e => handleFilterContinents(e)}className={style.filtros}>
            <option value='All'>Filter by Continent</option>
 						<option value='Africa'>Africa</option>
 						<option value='Antarctica'>Antarctica</option>
@@ -88,13 +89,11 @@ function handleFilterAct(e){
 						<option value='Oceania'>Oceania</option>
 						<option value='South America'>South America</option>
          </select>
-     <button onClick={handleFilterAct}>All Activities</button>
+     <button onClick={handleFilterAct} className={style.filtros}>All Activities</button>
     
-     
-      
-      
       <SearchBar/>
-     <Link to = '/activity'><button>Create Activity</button></Link> 
+      <Link to = '/activity'><button className={style.filtros}>Create Activity</button></Link> 
+      
       <Paginado
       currentPage = {currentPage}
       countriesPerPage = {countriesPerPage}
@@ -102,22 +101,21 @@ function handleFilterAct(e){
       paginado = {paginado} 
      
       />
-      
       {
         currentCountries?.map((el) => {
           return(
             
-              <Card className={style.card}
-                 key = {el.id}
-                 id= {el.id}
-                 name = {el.name}
-                 continent = {el.continent}
-                 img = {el.flag}
-              />
+            <Card className={style.card}
+            key = {el.id}
+            id= {el.id}
+            name = {el.name}
+            continent = {el.continent}
+            img = {el.flag}
+            />
             
-          )
-        })
-      }
+            )
+          })
+        }
     </div>
    
   )

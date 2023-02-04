@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { countryDb, activityDb } = require('./funciones');
 const { Activity, Country } = require('../db');
+const {getCountries} = require('./controller')
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -9,22 +10,7 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get('/countries', async (req, res) => {
-  const name = req.query.name;
-
-  try {
-    const allCountries = await countryDb();
-    if (name) {
-      const founds = allCountries.filter((el) =>
-        el.name.toLowerCase().includes(name.toLowerCase())
-      );
-      founds.length
-        ? res.status(200).json(founds)
-        : res.status(404).send('No matches found ');
-    }
-    res.status(200).json(allCountries);
-  } catch (error) {}
-});
+router.get('/countries',getCountries);
 
 
 router.get('/countries/:id', async (req, res) => {
@@ -41,8 +27,12 @@ router.get('/countries/:id', async (req, res) => {
   }
 });
 router.get('/activity', async (req, res) => {
+  try{
   const act = await activityDb();
   res.send(act);
+  }catch(error){
+    console.log(error)
+  }
 });
 
 router.post('/activity', async (req, res) => {

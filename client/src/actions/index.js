@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export function getCountrys(){
+    try{
     return async function(dispatch){
         var response = await axios.get('http://localhost:3001/countries')
           dispatch({
@@ -8,6 +9,9 @@ export function getCountrys(){
             payload: response.data
         })
     }
+}catch(error){
+    console.log(error)
+}
 }
 export function filterByContinents(payload){
     return {
@@ -18,6 +22,7 @@ export function filterByContinents(payload){
 }
 
 export function getNameCountrys(name){
+   
     return async function(dispatch){
         try {
             let json = await axios.get('http://localhost:3001/countries?name='+ name);
@@ -48,13 +53,18 @@ export function populationOrder(payload){
 
 export function getActivity(){
     return async function(dispatch){
+        try{
         var info = await axios.get('http://localhost:3001/activity', {});
         //const activitiesName = activities.data.map(el => el.name.toLowerCase())
         return dispatch({
             type: 'GET_ACTIVITY',
             payload: info.data
         })
+    }catch(error){
+        console.log(error)
     }
+}
+
 }
 export function byActivity(){
      return {
@@ -70,9 +80,13 @@ export function postActivity(payload) {
       season: payload.season,
       countries: payload.countries,
     };
+    try{
     return async function () {
       await axios.post('http://localhost:3001/activity', activity);
     };
+   }catch(error){
+    console.log(error)
+}
   } 
  export function getDetail(id){
     return async function(dispatch){

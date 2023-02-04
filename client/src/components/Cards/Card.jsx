@@ -8,7 +8,7 @@ export default function Card({name, continent,img ,id}) {
     <div className= {style.card}>
       <Link to = {'/details/' + id}>
         
-        <h3>{name}</h3>
+        <h5>{name}</h5>
         <h5>{continent}</h5>
         <img className= {style.img}src= {img} alt = "img flag"/>
         </Link>

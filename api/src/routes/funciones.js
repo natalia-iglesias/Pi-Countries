@@ -3,6 +3,7 @@ const {  Activity, Country } = require('../db')
 
 
 const countryApi = async () => {
+    try{
     const apiUrl =  await axios.get('https://restcountries.com/v3/all')
     const apiInfo = await apiUrl.data.map(el => {
         return {
@@ -21,14 +22,21 @@ const countryApi = async () => {
     });
   
    return apiInfo
+}catch(error){
+    console.log(error)
+}
 }
 
 const activityDb = async () => {
+    try{
     const act = await Activity.findAll({
         include: Country,
        
     }) 
     return act;
+}catch(error){
+    console.log(error)
+}
 };
 
 const countryDb = async () => {

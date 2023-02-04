@@ -5,10 +5,11 @@
    text-align: center;
    font-family: 'Tourney', cursive;
    font-size: 25px;
-   margin-top: 25 px;
-   width: 200 px;
+   color: blue;
+   margin-top:10px;
+   width: 200px;
    height: 254px;
-   padding: 16px;
+   padding: 20px;
   
    
 }
@@ -16,6 +17,7 @@
    margin-top: -30px;
 }
 .img {
-   width: 200px;
+   width: 190px;
    height: 120px;
 }
+
